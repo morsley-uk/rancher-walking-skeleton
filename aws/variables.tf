@@ -23,4 +23,10 @@ variable "kubernetes_version" {
   default = "1.17.0" 
 }
 
-#variable "domain_name" {}
+variable "desired_nodes" {
+  default = 1
+}
+
+variable "instance_type" {
+  default = "t2.medium"
+}
