@@ -44,7 +44,13 @@ resource "rancher2_cluster" "walking-skeleton" {
     access_key                      = var.access_key
     secret_key                      = var.secret_key
     region                          = var.region
-    
+
+    kubernetes_version              = var.kubernetes_version
+
+    #minimum_nodes                   = 1 #var.minimum_nodes
+    desired_nodes                   = var.desired_nodes
+    #maximum_nodes                   = 1 #var.maximum_nodes
+
     #security_groups                 = var.existing_vpc ? [var.security_group_name] : [""]
     #service_role                    = var.service_role != "" ? var.service_role : aws_iam_role.eks[0].name
     #subnets                         = var.existing_vpc ? list(var.subnet_id1, var.subnet_id2, var.subnet_id3) : [""]
@@ -52,17 +58,12 @@ resource "rancher2_cluster" "walking-skeleton" {
     #associate_worker_node_public_ip = var.associate_worker_node_public_ip
     #instance_type                   = var.instance_type
     
-    kubernetes_version              = var.kubernetes_version
-    #minimum_nodes                   = 1 #var.minimum_nodes
-    desired_nodes                   = var.desired_nodes
-    #maximum_nodes                   = 1 #var.maximum_nodes
-    
     #node_volume_size                = var.disk_size
     
     #session_token                   = var.session_token
     #virtual_network                 = var.vpc_id
     
-    instance_type                   = "t2.medium"
+    #instance_type                   = "t2.medium"
     
   }  
   
