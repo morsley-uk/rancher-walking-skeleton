@@ -16,12 +16,12 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "morsley-io-terraform"
-    key            = "bootstrap-rancher"
-    region         = "eu-west-2"
-    dynamodb_table = "morsley-io-tfstatelock-rancher-walking-skeleton"
-    encrypt        = true
-  }
+//  backend "s3" {
+//    bucket         = "morsley-io-terraform"
+//    key            = "bootstrap-rancher"
+//    region         = "eu-west-2"
+//    dynamodb_table = "morsley-io-tfstatelock-rancher-walking-skeleton"
+//    encrypt        = true
+//  }
 
 }
