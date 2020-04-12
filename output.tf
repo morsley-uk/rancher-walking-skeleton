@@ -8,7 +8,9 @@
 #                    |_|                  
 
 output "admin_url" {
-
   value = local.admin_url
+}
 
+output "admintoken_key" {
+  value = data.aws_s3_bucket_object.admin-token
 }

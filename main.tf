@@ -19,18 +19,18 @@ data "aws_s3_bucket_object" "admin-token" {
 
 # https://www.terraform.io/docs/providers/rancher2/index.html
 
-//provider "rancher2" {
-//
-//  #version = ""
-//
-//  alias = "admin"
-//
-//  api_url   = 
-//  token_key = data.aws_s3_bucket_object.admin-token
-//
-//  insecure = true # This can be romoved when Let's Encrypt is fully working
-//
-//}
+provider "rancher2" {
+
+  #version = ""
+
+  alias = "admin"
+
+  api_url   = local.admin_url
+  token_key = data.aws_s3_bucket_object.admin-token
+
+  insecure = true # This can be romoved when Let's Encrypt is fully working
+
+}
 
 # https://www.terraform.io/docs/providers/rancher2/d/cluster.html
 
