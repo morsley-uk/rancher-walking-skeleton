@@ -25,8 +25,7 @@ provider "rancher2" {
 
   alias = "admin"
 
-  #api_url   = local.admin_url
-  api_url="https://18.132.2.163"
+  api_url   = local.admin_url
   token_key = data.aws_s3_bucket_object.admin-token.body
 
   insecure = true # This can be romoved when Let's Encrypt is fully working
