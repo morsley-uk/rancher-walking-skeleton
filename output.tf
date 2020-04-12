@@ -12,5 +12,5 @@ output "admin_url" {
 }
 
 output "admintoken_key" {
-  value = data.aws_s3_bucket_object.admin-token
+  value = data.aws_s3_bucket_object.admin-token.body
 }
