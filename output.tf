@@ -6,3 +6,9 @@
 #    \____/ \__,_|\__| .__/ \__,_|\__|___/
 #                    | |                  
 #                    |_|                  
+
+output "admin_url" {
+
+  value = local.admin_url
+
+}

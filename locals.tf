@@ -9,6 +9,8 @@ locals {
 
   bucket_name = replace(var.domain, ".", "-")
 
+  admin_url = "https://${var.subdomain}.${var.domain}"
+  
   #folder = replace("${var.domain}-${var.subdomain}-files", ".", "-")
 
 }
