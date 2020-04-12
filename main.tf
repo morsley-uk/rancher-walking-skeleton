@@ -71,9 +71,9 @@ resource "rancher2_cluster" "walking-skeleton" {
 
   }
 
-  enable_cluster_alerting = true
-  enable_cluster_monitoring = true
-  enable_cluster_istio = true
+  #enable_cluster_alerting = true
+  #enable_cluster_monitoring = true
+  #enable_cluster_istio = true
   #scheduled_cluster_scan = true # Must be Rancher 2.4.0 or above
 
 }
