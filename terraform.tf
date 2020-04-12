@@ -12,7 +12,7 @@ terraform {
 
   required_providers {
     aws = {
-      version = "= 2.55.0" # https://registry.terraform.io/providers/hashicorp/aws/
+      version = "= 2.57.0" # https://registry.terraform.io/providers/hashicorp/aws/
     }
   }
 
