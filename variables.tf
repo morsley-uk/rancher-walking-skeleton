@@ -39,5 +39,5 @@ variable "eks_desired_nodes" {
 }
 
 variable "eks_instance_type" {
-  default = "t2.large"
+  default = "t2.medium"
 }

@@ -21,8 +21,6 @@ data "aws_s3_bucket_object" "admin-token" {
 
 provider "rancher2" {
 
-  #version = ""
-
   alias = "admin"
 
   api_url   = local.admin_url
@@ -36,11 +34,15 @@ provider "rancher2" {
 
 resource "rancher2_cluster" "walking-skeleton" {
 
+  provider = rancher2.admin
+  
   name        = var.eks_cluster_name
   description = "${var.eks_cluster_name} Kubernetes cluster"
 
   # https://www.terraform.io/docs/providers/rancher2/r/cluster.html#eks_config-1
 
+  #kube_config
+  
   eks_config {
 
     access_key = var.access_key
@@ -68,5 +70,10 @@ resource "rancher2_cluster" "walking-skeleton" {
     #instance_type                   = "t2.medium"
 
   }
+
+  enable_cluster_alerting = true
+  enable_cluster_monitoring = true
+  enable_cluster_istio = true
+  #scheduled_cluster_scan = true # Must be Rancher 2.4.0 or above
 
 }
