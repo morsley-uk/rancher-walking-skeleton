@@ -28,6 +28,8 @@ provider "rancher2" {
   api_url   = "https://${var.subdomain}.${var.domain}"
   token_key = data.aws_s3_bucket_object.admin-token
 
+  insecure = true # This can be romoved when Let's Encrypt is fully working
+  
 }
 
 # https://www.terraform.io/docs/providers/rancher2/d/cluster.html
