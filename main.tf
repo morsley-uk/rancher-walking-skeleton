@@ -27,6 +27,8 @@ provider "rancher2" {
   token_key = data.aws_s3_bucket_object.admin-token.body
 
   insecure = true # This can be romoved when Let's Encrypt is fully working
+  
+  retries = 25
 
 }
 
@@ -52,9 +54,9 @@ resource "rancher2_cluster" "walking-skeleton" {
     kubernetes_version = var.eks_kubernetes_version
     desired_nodes      = var.eks_desired_nodes
     ami                = data.aws_ami.ubuntu.id == "" ? var.eks_ami_id : data.aws_ami.ubuntu.id
+    minimum_nodes      = 1 
+    maximum_nodes      = 3 
     
-    #minimum_nodes                   = 1 #var.minimum_nodes
-    #maximum_nodes                   = 1 #var.maximum_nodes
     #security_groups                 = var.existing_vpc ? [var.security_group_name] : [""]
     #service_role                    = var.service_role != "" ? var.service_role : aws_iam_role.eks[0].name
     #subnets                         = var.existing_vpc ? list(var.subnet_id1, var.subnet_id2, var.subnet_id3) : [""]
@@ -72,4 +74,8 @@ resource "rancher2_cluster" "walking-skeleton" {
   #enable_cluster_istio = true
   #scheduled_cluster_scan = true # Must be Rancher 2.4.0 or above
 
+  timeouts {
+    create = "45" # The 'default' of 30, wasn't enough!
+  }
+  
 }
