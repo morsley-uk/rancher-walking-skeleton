@@ -75,7 +75,7 @@ resource "rancher2_cluster" "walking-skeleton" {
   #scheduled_cluster_scan = true # Must be Rancher 2.4.0 or above
 
   timeouts {
-    create = 45 # The 'default' of 30, wasn't enough!
+    create = "45m" # The 'default' of 30, wasn't enough!
   }
   
 }
