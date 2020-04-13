@@ -26,6 +26,10 @@ variable "subdomain" {
 
 # EKS Cluster...
 
+variable "eks_ami_id" {
+  default = "ami-01a6e31ac994bbc09"
+}
+
 variable "eks_cluster_name" {
   default = "walking-skeleton-k8s"
 }
