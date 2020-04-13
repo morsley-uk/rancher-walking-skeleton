@@ -34,8 +34,9 @@ variable "eks_cluster_name" {
   default = "walking-skeleton-k8s"
 }
 
+# https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html
 variable "eks_kubernetes_version" {
-  default = "1.17.0"
+  default = "1.15"
 }
 
 variable "eks_desired_nodes" {
