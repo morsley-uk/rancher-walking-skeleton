@@ -31,16 +31,22 @@ variable "eks_ami_id" {
 }
 
 variable "eks_cluster_name" {
-  default = "walking-skeleton-k8s"
+  default = "walking-skeleton-eks"
 }
 
 # https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html
 variable "eks_kubernetes_version" {
-  default = "1.15"
+  default = "1.15" # At the time of writing, this is the latest.
 }
 
-variable "eks_desired_nodes" {
+variable "eks_minimum_nodes" {
   default = 1
+}
+variable "eks_desired_nodes" {
+  default = 2
+}
+variable "eks_maximum_nodes" {
+  default = 3
 }
 
 variable "eks_instance_type" {

@@ -34,12 +34,11 @@ provider "rancher2" {
 
 # https://www.terraform.io/docs/providers/rancher2/d/cluster.html
 
-resource "rancher2_cluster" "walking-skeleton" {
+resource "rancher2_cluster" "walking-skeleton-eks" {
 
   provider = rancher2.admin
   
-  name        = var.eks_cluster_name
-  description = "${var.eks_cluster_name} Kubernetes cluster"
+  name = var.eks_cluster_name
 
   # https://www.terraform.io/docs/providers/rancher2/r/cluster.html#eks_config-1
 
@@ -52,10 +51,10 @@ resource "rancher2_cluster" "walking-skeleton" {
     region     = var.region
 
     kubernetes_version = var.eks_kubernetes_version
-    desired_nodes      = var.eks_desired_nodes
     ami                = data.aws_ami.ubuntu.id == "" ? var.eks_ami_id : data.aws_ami.ubuntu.id
-    minimum_nodes      = 1 
-    maximum_nodes      = 3 
+    minimum_nodes      = var.eks_minimum_nodes
+    desired_nodes      = var.eks_desired_nodes
+    maximum_nodes      = var.eks_maximum_nodes
     
     #security_groups                 = var.existing_vpc ? [var.security_group_name] : [""]
     #service_role                    = var.service_role != "" ? var.service_role : aws_iam_role.eks[0].name
@@ -75,7 +74,23 @@ resource "rancher2_cluster" "walking-skeleton" {
   #scheduled_cluster_scan = true # Must be Rancher 2.4.0 or above
 
   timeouts {
-    create = "45m" # The 'default' of 30, wasn't enough!
+    create = "45m" # The 'default' of '30m', wasn't enough!
   }
   
+}
+
+resource "aws_s3_bucket_object" "eks-kube-config-yaml" {
+  
+  bucket  = local.bucket_name
+  key     = "/${var.eks_cluster_name}/eks_kube_config.yaml"
+  content = rancher2_cluster.walking-skeleton-eks.kube_config
+  content_type = "text/*"
+
+}
+
+resource "local_file" "kube-config-yaml" {
+
+  filename = "${local.folder}/eks_kube_config.yaml"
+  content = rancher2_cluster.walking-skeleton-eks.kube_config
+
 }

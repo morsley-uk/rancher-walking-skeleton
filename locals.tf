@@ -11,6 +11,6 @@ locals {
 
   admin_url = "https://${var.subdomain}.${var.domain}"
   
-  #folder = replace("${var.domain}-${var.subdomain}-files", ".", "-")
+  folder = replace("${var.domain}-${var.subdomain}-files", ".", "-")
 
 }
