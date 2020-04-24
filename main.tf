@@ -51,7 +51,7 @@ resource "rancher2_cluster" "walking-skeleton-eks" {
     region     = var.region
 
     kubernetes_version = var.eks_kubernetes_version
-    ami                = data.aws_ami.ubuntu.id == "" ? var.eks_ami_id : data.aws_ami.ubuntu.id
+    ami                = var.eks_ami_id
     minimum_nodes      = var.eks_minimum_nodes
     desired_nodes      = var.eks_desired_nodes
     maximum_nodes      = var.eks_maximum_nodes

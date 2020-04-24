@@ -26,8 +26,9 @@ variable "subdomain" {
 
 # EKS Cluster...
 
+# https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html
 variable "eks_ami_id" {
-  default = "ami-01a6e31ac994bbc09"
+  default = "ami-0ad8600a59c501b34" # For Kubernetes 1.15 & London (eu-west2)
 }
 
 variable "eks_cluster_name" {
